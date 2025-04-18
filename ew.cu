@@ -24,6 +24,7 @@
 #define C4 0.0   
 #endif
 
+// noise temperature
 #ifndef TEMP
 #define TEMP 0.1
 #endif
@@ -33,23 +34,27 @@
 #endif
 */
 
+// noise correlation time
 #ifndef TAU    
 #define TAU 0.1
 #endif
 
-
+// tilted boundary conditions
 #ifndef TILT
 #define TILT 0.0
 #endif
 
+// monitor some quantities every MONITOR steps
 #ifndef MONITOR
 #define MONITOR 1000
 #endif
 
+// prints whole configurations every MONITORCONF steps
 #ifndef MONITORCONF
 #define MONITORCONF 100000
 #endif
 
+// define to work in double or simple precision
 #ifdef DOUBLE
 typedef double real;
 typedef cufftDoubleComplex complex;
@@ -108,6 +113,7 @@ class cuerda{
         thrust::fill(u.begin(),u.end(),real(0.0));
     }
 
+    // needed to reach steady state noise	
     void warmup_noise(){
         real dt_ = dt;
         unsigned long seed_ = seed;

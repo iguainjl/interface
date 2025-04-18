@@ -207,7 +207,7 @@ class cuerda{
         real cmu2 = 
         thrust::transform_reduce(
             u.begin(),u.end(),
-            [=] __device__ (real x){
+            [=] __device__ __host__ (real x){
                 return (x-cmu)*(x-cmu);
             },
             real(0.f),

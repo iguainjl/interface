@@ -484,6 +484,8 @@ int main(int argc, char **argv){
     logout << "Time taken: " << duration.count() << " seconds\n L=" << L << " Nrun=" << Nrun << std::endl;
     logout << "device= " << deviceProp.name << std::endl;
 
+    logout << "Performance[s,L,Nrun]: " << duration.count() << " " << L << " " << Nrun << std::endl;
+
     return 0;
 }
 

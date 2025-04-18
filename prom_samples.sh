@@ -2,7 +2,7 @@ samples=$1
 
 echo "samples="$samples
 
-for((i=1;i<$samples;i++))
+for((i=1;i<=$samples;i++))
 do 
     echo $i; 
     ./activeinterface $2 $3 $i; 

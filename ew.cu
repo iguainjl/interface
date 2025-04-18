@@ -481,7 +481,7 @@ int main(int argc, char **argv){
     std::chrono::duration<double> duration = end - start;
     // Output the duration
        
-    logout << "Time taken: " << duration.count() << " seconds\n L=" << L << "Nrun=" << Nrun << std::endl;
+    logout << "Time taken: " << duration.count() << " seconds\n L=" << L << " Nrun=" << Nrun << std::endl;
     logout << "device= " << deviceProp.name << std::endl;
 
     return 0;

@@ -438,8 +438,8 @@ int main(int argc, char **argv){
     logout 
 	<< "C2= " << C2  << "\n"
 	<< "C4= " << C4 << "\n"
-	<< ", dt= " << dt << "\n"
-	<< ", L= " << L << std::endl;
+	<< "dt= " << dt << "\n"
+	<< "L= " << L << std::endl;
     logout.flush();
 
     // Start the timer
@@ -481,8 +481,8 @@ int main(int argc, char **argv){
     std::chrono::duration<double> duration = end - start;
     // Output the duration
        
-    logout << ", Time taken: " << duration.count() << " seconds"
-    << ", device= " << deviceProp.name << std::endl;
+    logout << "Time taken: " << duration.count() << " seconds\n L=" << L << "Nrun=" << Nrun << std::endl;
+    logout << "device= " << deviceProp.name << std::endl;
 
     return 0;
 }

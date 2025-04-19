@@ -484,7 +484,7 @@ int main(int argc, char **argv){
     C.print_sofq(sofqout);
 
     // Calculate the duration
-    std::chrono::duration<std::chrono::seconds> duration = end - start;
+    std::chrono::duration<double> duration = end - start;
     // Output the duration
        
     logout << "Time taken: " << duration.count() << " seconds\n L=" << L << " Nrun=" << Nrun << std::endl;

@@ -135,7 +135,7 @@ class cuerda{
                     curandStatePhilox4_32_10_t state;
                     curand_init(seed_, i, n, &state);
                     float ran = sqrt(2*TEMP*dt_)*curand_normal(&state);
-                    thrust::get<0>(t) += -thrust::get<0>(t)*dt_/TAU + ran;
+                    thrust::get<0>(t) += -thrust::get<0>(t)*dt_/TAU + ran/TAU;
                 } 
             );  
         }
@@ -301,10 +301,11 @@ class cuerda{
                 float ran = sqrt(2*TEMP*dt_)*curand_normal(&state);
                 raw_noise[i] += -raw_noise[i]*dt_/TAU + ran;
                                         
-                real lap_u = C2*(uright + uleft - 2.0*raw_u[i]) + raw_noise[i];
+                real lap_u = C2*(uright + uleft - 2.0*raw_u[i]);
+		real lap4_u = = C4*( powf(uright - raw_u[i],3.0) - powf(raw_u[i]-uleft,3.0) );	
                 
                 // modify element force
-                thrust::get<0>(t) = C2*lap_u;
+                thrust::get<0>(t) = C2*lap_u + C4*lap4_u + raw_noise[i];
             } 
         );
 

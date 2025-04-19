@@ -302,7 +302,7 @@ class cuerda{
                 raw_noise[i] += -raw_noise[i]*dt_/TAU + ran/sqrt(TAU);
                                         
                 real lap_u = C2*(uright + uleft - 2.0*raw_u[i]);
-		real lap4_u = = C4*( powf(uright - raw_u[i],3.0) - powf(raw_u[i]-uleft,3.0) );	
+		real lap4_u = C4*( powf(uright - raw_u[i],3.0) - powf(raw_u[i]-uleft,3.0) );	
                 
                 // modify element force
                 thrust::get<0>(t) = C2*lap_u + C4*lap4_u + raw_noise[i];

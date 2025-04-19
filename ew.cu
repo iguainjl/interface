@@ -453,7 +453,7 @@ int main(int argc, char **argv){
 
     unsigned long jlog=1;
 
-    for(int i=0;i<Nrun;i++){
+    for(int i=0;i<=Nrun;i++){
         C.update(i);
 
         if(i%MONITORCONF==0){

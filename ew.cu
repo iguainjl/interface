@@ -46,7 +46,7 @@
 
 // monitor some quantities every MONITOR steps
 #ifndef MONITOR
-#define MONITOR 1000
+#define MONITOR 10000
 #endif
 
 // prints whole configurations every MONITORCONF steps
@@ -470,7 +470,7 @@ int main(int argc, char **argv){
             jlog*=10;
         }
         
-        if(i%Neq==0) C.reset_acum_Sofq();
+        //if(i%Neq==0) C.reset_acum_Sofq();
                         
         if(i%MONITOR==0){
             C.print_roughness(cmout,dt*i);

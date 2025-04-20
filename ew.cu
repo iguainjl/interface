@@ -264,7 +264,7 @@ class cuerda{
         real *raw_u = thrust::raw_pointer_cast(&u[0]); 
         real *raw_noise = thrust::raw_pointer_cast(&noise[0]); 
 
-        // variables to be camptured by lambda (not elegant...)
+        // variables to be captured by lambda (not elegant...)
         real dt_=dt;
         unsigned long L_ = L;
         unsigned long seed_ = seed;
@@ -303,9 +303,14 @@ class cuerda{
                                         
                 real lap_u = C2*(uright + uleft - 2.0*raw_u[i]);
 		real lap4_u = C4*( powf(uright - raw_u[i],3.0) - powf(raw_u[i]-uleft,3.0) );	
-                
+
                 // modify element force
                 thrust::get<0>(t) = C2*lap_u + C4*lap4_u + raw_noise[i];
+
+		#ifdef KPZ
+                thrust::get<0>(t) += KPZ*powf(0.5*(uright-uleft),2.0f);
+		#endif
+
             } 
         );
 

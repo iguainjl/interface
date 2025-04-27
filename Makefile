@@ -25,4 +25,4 @@ update_git:
 	git add *.cu Makefile *.h *.sh README.md ; git commit -m "program update"; git push
 
 clean:
-	rm activeinterface
+	rm activeinterface kpzinterface anhactiveinterface

@@ -20,9 +20,18 @@
 #endif
 
 // anharmonic elasticity constant
+/*
 #ifndef C4
 #define C4 0.0   
 #endif
+*/
+
+// harmonic elasticity constant
+/*
+#ifndef KPZ
+#define KPZ 1.0   
+#endif
+*/
 
 // noise temperature
 #ifndef TEMP
@@ -40,9 +49,11 @@
 #endif
 
 // tilted boundary conditions
+/*
 #ifndef TILT
 #define TILT 0.0
 #endif
+*/
 
 // monitor some quantities every MONITOR steps
 #ifndef MONITOR
@@ -302,15 +313,17 @@ class cuerda{
                 raw_noise[i] += -raw_noise[i]*dt_/TAU + ran/sqrt(TAU);
                                         
                 real lap_u = C2*(uright + uleft - 2.0*raw_u[i]);
-		real lap4_u = C4*( powf(uright - raw_u[i],3.0) - powf(raw_u[i]-uleft,3.0) );	
 
                 // modify element force
-                thrust::get<0>(t) = C2*lap_u + C4*lap4_u + raw_noise[i];
+                thrust::get<0>(t) = C2*lap_u + raw_noise[i];
+
+		#ifdef C4
+		thrust::get<0>(t) += C4*( powf(uright - raw_u[i],3.0) - powf(raw_u[i]-uleft,3.0) );	
+		#endif
 
 		#ifdef KPZ
                 thrust::get<0>(t) += KPZ*powf(0.5*(uright-uleft),2.0f);
 		#endif
-
             } 
         );
 
@@ -445,11 +458,17 @@ int main(int argc, char **argv){
     #ifdef MONITORCONF
     logout << "MONITORCONF= " << MONITORCONF << "\n";
     #endif
-    
+    #ifdef C2
+    logout << "C2= " << C2 << "\n";
+    #endif
+    #ifdef C4
+    logout << "C4= " << C4 << "\n";
+    #endif
+    #ifdef KPZ
+    logout << "KPZ= " << KPZ << "\n";
+    #endif
     
     logout 
-	<< "C2= " << C2  << "\n"
-	<< "C4= " << C4 << "\n"
 	<< "dt= " << dt << "\n"
 	<< "L= " << L << std::endl;
     logout.flush();

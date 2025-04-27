@@ -14,8 +14,8 @@ LDFLAGS = -L/opt/nvidia/hpc_sdk/Linux_x86_64/23.7/math_libs/12.2/lib64
 activeinterface: ew.cu
 	$(CXX) $(FLAGS) $(PARAMSEW) ew.cu -o activeinterface $(LDFLAGS) $(INCLUDES) 
 
-anhactiveinterface: ew.cu
-	$(CXX) $(FLAGS) $(PARAMSANH) ew.cu -o anhactiveinterface $(LDFLAGS) $(INCLUDES) 
+anhinterface: ew.cu
+	$(CXX) $(FLAGS) $(PARAMSANH) ew.cu -o anhinterface $(LDFLAGS) $(INCLUDES) 
 
 kpzinterface: ew.cu
 	$(CXX) $(FLAGS) $(PARAMSKPZ) ew.cu -o kpzinterface $(LDFLAGS) $(INCLUDES) 
@@ -25,4 +25,4 @@ update_git:
 	git add *.cu Makefile *.h *.sh README.md ; git commit -m "program update"; git push
 
 clean:
-	rm activeinterface kpzinterface anhactiveinterface
+	rm activeinterface kpzinterface anhinterface

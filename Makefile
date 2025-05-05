@@ -7,7 +7,7 @@ INCLUDES = -I/opt/nvidia/hpc_sdk/Linux_x86_64/23.7/math_libs/12.2/include
 FLAGS = --expt-extended-lambda -lcufft -std=c++14 -arch=sm_75 
 PARAMSEW = -DC2=1.0 -DTAU=$(TAU) -DMONITOR=$(MONITOR) #-DDOUBLE  
 PARAMSKPZ = -DC2=1.0 -DKPZ=1.0 -DTAU=$(TAU) -DMONITOR=$(MONITOR)  #-DDOUBLE  
-PARAMSANH = -DC2=1.0 -C4=1.0 -DTAU=$(TAU) -DMONITOR=$(MONITOR) #-DDOUBLE  
+PARAMSANH = -DC2=1.0 -DC4=1.0 -DTAU=$(TAU) -DMONITOR=$(MONITOR) #-DDOUBLE  
 
 LDFLAGS = -L/opt/nvidia/hpc_sdk/Linux_x86_64/23.7/math_libs/12.2/lib64 
 
